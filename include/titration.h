@@ -17,7 +17,7 @@ typedef struct	titration_val_s {
 }	titration_val_t;
 
 typedef struct	eqpt_calculator_s {
-	titration_val_t	*input;
+	titration_val_t	*start;
 }	eqpt_calculator_t;
 
 

@@ -33,14 +33,16 @@ LIBFLAG		=	# -l$(LIB_NAMEDIR)
 
 NAME		=	109titration
 MAIN		=	src/main.c
-SRC		=	src/file.c
+SRC		=	src/file.c	\
+			src/calc.c
 			
 OBJ		=	$(SRC:.c=.o)
 
 #	Tests settings
 TEST_NAME	=	unit_tests
-TEST_SRC	=	tests/redirect.c	\
-			tests/t_read_file.c	\
+TEST_SRC	=	tests/redirect.c		\
+			tests/t_read_file.c		\
+			tests/t_calc_derivative.c	\
 			tests/t_print_file.c
 
 TEST_FLAGS	=	--coverage -lcriterion
