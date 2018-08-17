@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 	int	i = 0;
 
 	while (i < size - 2) {
-		derivative = dbg_calc_derivative(volumes, phs);
+		derivative = dbg_calc_derivative(&phs[i], &volumes[i]);
 		printf("%g\n", derivative);
 		derivative = 0.0;
 		i++;

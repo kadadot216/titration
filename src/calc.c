@@ -5,14 +5,14 @@
 ** Calculation related functions
 */
 
-double	dbg_calc_derivative(double *volumes, double *phs)
+double	dbg_calc_derivative(double *phs, double *volumes)
 {
-	return ((volumes[2] - volumes[0]) / (phs[2] - phs[0]));
+	return ((phs[2] - phs[0]) / (volumes[2] - volumes[0]));
 }
 
-double	dbg_calc_derivative_2(double *volumes, double *phs)
+double	dbg_calc_derivative_2(double *phs, double *volumes)
 {
 	double	(*f)(double *, double *) = &dbg_calc_derivative;
 
-	return (f(&volumes[3], &phs[2]) - f(&volumes[0], &phs[0]) / phs[2] - phs[0]);
+	return ((f(&phs[2], &volumes[2]) - f(&phs[0], &volumes[0])) / volumes[2] - volumes[0]);
 }
