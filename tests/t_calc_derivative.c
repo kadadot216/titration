@@ -27,7 +27,7 @@ Test(derivative_2_calc, test1)
 	double	low = -0.28;
 	double	derivative = 0.0;
 
-	derivative = dbg_calc_derivative_2(phs, volumes);
+	derivative = dbg_calc_derivative_2(volumes, phs);
 	cr_assert(derivative >= low);
 	cr_assert(derivative <= hi, "Got %g", derivative);
 }
