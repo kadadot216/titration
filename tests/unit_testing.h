@@ -12,5 +12,6 @@
 #include <criterion/redirect.h>
 
 void	redirect_all_std(void);
+void	print_2nd_derivative(void);
 
 #endif /* __UNIT_TESTING_H__ */

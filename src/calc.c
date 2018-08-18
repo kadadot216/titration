@@ -14,10 +14,9 @@ double	dbg_calc_derivative(double *phs, double *volumes)
 
 double	dbg_calc_derivative_2(double *phs, double *volumes)
 {
-	double	(*f)(double *, double *) = &dbg_calc_derivative;
-
-	double	y2 = f(&phs[2], &volumes[2]);
-	double	y1 = f(&phs[0], &volumes[0]);
+	double	y1 = dbg_calc_derivative(&phs[2], &volumes[2]);
+	double	y2 = dbg_calc_derivative(&phs[0], &volumes[0]);
 	double	derivative_2 = ((y2 - y1) / (volumes[3] - volumes[1]));
+
 	return (derivative_2);
 }

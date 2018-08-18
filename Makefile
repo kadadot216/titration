@@ -42,6 +42,7 @@ OBJ		=	$(SRC:.c=.o)
 TEST_NAME	=	unit_tests
 TEST_SRC	=	tests/redirect.c		\
 			tests/t_read_file.c		\
+			tests/helpers/print_2nd_derivative.c		\
 			tests/t_calc_derivative.c	\
 			tests/t_print_file.c
 
