@@ -17,7 +17,7 @@ void	print_2nd_derivative(void)
 	int	i = 0;
 
 	while (i < size - 4) {
-		derivative_2 = dbg_calc_derivative_2(&phs[i], &volumes[i]);
+		derivative_2 = eqpt_derivative_rec_old(2, &phs[i], &volumes[i]);
 		printf("%.2f\n", derivative_2);
 		derivative_2 = 0.0;
 		i++;

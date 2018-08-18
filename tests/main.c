@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 	if (status == FALSE) {
 		return (84);
 	}
-	parse_fd(&eqpt, fd);
-	print_titra_values(eqpt.start);
+	fd_parse(&eqpt, fd);
+	print_titr_vals(eqpt.tval_head);
 	return (0);
 }

@@ -8,12 +8,14 @@
 #include "titration.h"
 #include "file.h"
 
-void	print_titra_values(titration_val_t *start)
+void	print_titr_vals(llval_t *volume, llval_t *ph)
 {
-	titration_val_t	*tmp = start;
+	llval_t	*phcs = ph;
+	llval_t	*volcs = volume;
 
-	while ((tmp) && tmp->next != NULL) {
-		printf("%g%c%g\n", tmp->volume, DATA_SEP, tmp->ph);
-		tmp = tmp->next;
+	while (phcs->n != NULL && volcs->n != NULL) {
+		printf("%g%c%g\n", volcs->value, DATA_SEP, phcs->value);
+		volcs = volcs->n;
+		phcs = phcs->n;
 	}
 }

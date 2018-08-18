@@ -8,7 +8,9 @@
 #ifndef __CALC_H__
 #define __CALC_H__
 
-double	dbg_calc_derivative(double *volumes, double *phs);
-double	dbg_calc_derivative_2(double *volumes, double *phs);
+#include "titration.h"
+
+double	eqpt_derivative_rec_old(int counter, double *volumes, double *phs);
+double	eqpt_derivative_rec(int n, llval_t *lph, llval_t *lvolume);
 
 #endif /* __CALC_H__ */

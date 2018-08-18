@@ -82,8 +82,8 @@ Test(print_titration_llist, test1, .init=redirect_all_std)
 	eqpt_calculator_t	eqpt;
 
 	if (file_open(&fd, "values.csv", "r")) {
-		parse_fd(&eqpt, fd);
-		print_titra_values(eqpt.start);
+		fd_parse(&eqpt, fd);
+		print_titr_vals(eqpt.volumes, eqpt.phs);
 		fflush(stdout);
 		cr_assert_stdout_eq_str(buffer, "");
 	} else {

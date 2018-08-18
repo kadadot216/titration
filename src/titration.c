@@ -9,20 +9,31 @@
 #include "types.h"
 #include "titration.h"
 
-static void	tval_init(titration_val_t *tval)
+void	llval_init(llval_t *llval)
 {
-	tval->ph = 0.0;
-	tval->volume = 0.0;
-	tval->next = NULL;
+	llval->value = 0.0;
+	llval->n = NULL;
 }
 
-titration_val_t	*new_tval(titration_val_t *new)
+llval_t	*new_llval(llval_t *new)
 {
-	new = malloc(sizeof(titration_val_t));
+	new = malloc(sizeof(llval_t));
 	
 	if (!new) {
 		return (NULL);
 	}
-	tval_init(new);
+	llval_init(new);
 	return (new);
+}
+
+void	init_eqpt(eqpt_calculator_t *eqpt)
+{
+	int	i = 0;
+
+	eqpt->volumes = NULL;
+	eqpt->phs = NULL;
+	while (i < MAX_DERIVATIVE) {
+		eqpt->deriv_head[i] = NULL;
+		i++;
+	}
 }

@@ -11,21 +11,22 @@
 #include <stdio.h>
 #include "types.h"
 
-typedef struct	titration_val_s {
-	double	volume;
-	double	ph;
-	struct titration_val_s	*next;
-}	titration_val_t;
+#define	MAX_DERIVATIVE	(2)
+
+typedef struct	llval_s {
+	double	value;
+	struct llval_s	*n;
+}	llval_t;
 
 typedef struct	eqpt_calculator_s {
-	titration_val_t	*start;
+	llval_t		*volumes;
+	llval_t		*phs;
+	llval_t		*deriv_head[MAX_DERIVATIVE];
 }	eqpt_calculator_t;
 
-void	parse_fd(eqpt_calculator_t *, FILE *fd);
-void	print_titra_values(titration_val_t *start);
-titration_val_t	*new_tval(titration_val_t *new);
-void	print_titra_values(titration_val_t *start);
-void	parse_fd(eqpt_calculator_t *eqpt, FILE *fd);
-void	print_titra_values(titration_val_t *start);
+llval_t	*new_llval(llval_t *new);
+void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd);
+void	print_llval(llval_t *start);
+void	print_titr_vals(llval_t *volume, llval_t *ph);
 
 #endif /* __TITRATION_H__ */

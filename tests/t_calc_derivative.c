@@ -7,6 +7,8 @@
 
 #include "unit_testing.h"
 #include "../include/calc.h"
+#include "../include/file.h"
+#include "../include/titration.h"
 
 Test(derivative_calc, test1)
 {
@@ -15,7 +17,7 @@ Test(derivative_calc, test1)
 	double	res = 1.00;
 	double	derivative = 0.0;
 
-	derivative = dbg_calc_derivative(volumes, phs);
+	derivative = eqpt_derivative_rec_old(1, volumes, phs);
 	cr_assert_eq(derivative, res);
 }
 
@@ -46,9 +48,28 @@ Test(derivative_2_calc, test2)
 	int	i = 0;
 
 	while (i < size) {
-		derivative_2 = dbg_calc_derivative_2(&phs[i], &volumes[i]);
+		derivative_2 = eqpt_derivative_rec_old(2, &phs[i], &volumes[i]);
 		cr_assert_eq((int) derivative_2, (int)results[i], "%g <=> %g\n", derivative_2, results[i]);
 		derivative_2 = 0.0;
 		i++;
 	}
 }
+
+//Test(calc_first_derivative_ll, test1)
+//{
+//	FILE	*fd = NULL;
+//	double	results[] = {1.0, 0.47, 0.20, 0.8, 1.47, 2.0, 2.13, 0.83, 0.29, 0.07, 0.06};
+//	int	size = 11;
+//	int	i = 0;
+//	eqpt_calculator_t	eqpt;
+//		
+//	file_open(&fd, "values.csv", OPEN_MODE);
+//	fd_parse(&eqpt, fd);
+//
+//	while(eqpt.start->n != NULL) {
+//		cr_assert_eq((int) eqpt.derivative, (int) results[i]);
+//		eqpt.derivative = eqpt.derivative->n;
+//		i++;
+//	}
+//	cr_assert_eq(i, size);
+//}
