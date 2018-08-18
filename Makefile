@@ -34,7 +34,10 @@ LIBFLAG		=	# -l$(LIB_NAMEDIR)
 NAME		=	109titration
 MAIN		=	src/main.c
 SRC		=	src/file.c	\
-			src/calc.c
+			src/calc.c	\
+			src/parsing.c	\
+			src/debug.c	\
+			src/titration.c
 			
 OBJ		=	$(SRC:.c=.o)
 

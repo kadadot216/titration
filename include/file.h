@@ -13,6 +13,8 @@
 #include <stdio.h>
 
 #define	DATA_EXT	("csv")
+#define	OPEN_MODE	("r")
+#define	DATA_SEP	(';')
 
 void	file_print_ctnt(FILE *fd);
 int	file_has_extension(char const *filename, char const *ext);
