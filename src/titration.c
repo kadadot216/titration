@@ -47,6 +47,7 @@ void	init_eqpt(eqpt_calculator_t *eqpt)
 
 	eqpt->volumes = NULL;
 	eqpt->phs = NULL;
+	eqpt->est = NULL;
 	while (i < MAX_DERIVATIVE) {
 		eqpt->deriv_head[i] = NULL;
 		i++;

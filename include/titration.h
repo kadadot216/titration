@@ -19,9 +19,10 @@ typedef struct	llval_s {
 }	llval_t;
 
 typedef struct	eqpt_calculator_s {
-	llval_t		*volumes;
-	llval_t		*phs;
-	llval_t		*deriv_head[MAX_DERIVATIVE];
+	llval_t	*volumes;
+	llval_t	*phs;
+	llval_t	*deriv_head[MAX_DERIVATIVE];
+	llval_t	*est;
 }	eqpt_calculator_t;
 
 llval_t	*new_llval(void);
