@@ -19,3 +19,13 @@ void	print_titr_vals(llval_t *volume, llval_t *ph)
 		phcs = phcs->n;
 	}
 }
+
+void	print_llval(llval_t *val)
+{
+	llval_t	*cs = val;
+
+	while (cs->n != NULL) {
+		printf("%g\n", cs->value);
+		cs = cs->n;
+	}
+}

@@ -1,10 +1,9 @@
 b main
 r
-b fd_parse
+b eqpt_calc_derivatives_run
 c
 s
 s
-display *start
-display *cursor
-display start
-display cursor
+display *cs
+display eqpt->volumes
+display eqpt->phs

@@ -25,6 +25,8 @@ int	main(int ac, char **av)
 		return (84);
 	}
 	fd_parse(&eqpt, fd);
-	print_titr_vals(eqpt.tval_head);
+	eqpt_calc_derivatives_run(&eqpt);
+	//print_titr_vals(eqpt.volumes, eqpt.phs);
+	print_llval(eqpt.deriv_head[0]);
 	return (0);
 }
