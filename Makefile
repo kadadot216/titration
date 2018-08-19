@@ -37,6 +37,7 @@ SRC		=	src/file.c	\
 			src/calc.c	\
 			src/parsing.c	\
 			src/debug.c	\
+			src/print.c	\
 			src/titration.c
 			
 OBJ		=	$(SRC:.c=.o)
@@ -47,7 +48,8 @@ TEST_SRC	=	tests/redirect.c		\
 			tests/t_read_file.c		\
 			tests/helpers/print_2nd_derivative.c		\
 			tests/t_calc_derivative.c	\
-			tests/t_print_file.c
+			tests/t_print_file.c		\
+			tests/t_print2_file.c
 
 TEST_FLAGS	=	--coverage -lcriterion
 

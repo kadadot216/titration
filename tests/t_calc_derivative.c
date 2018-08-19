@@ -21,23 +21,6 @@ Test(derivative_calc, test1)
 	cr_assert_eq(derivative, res);
 }
 
-Test(print_derivative_2, test1, .init=redirect_all_std)
-{
-	char	*buffer = "0.27\n"
-		"-0.11\n"
-		"-0.63\n"
-		"-0.80\n"
-		"-0.67\n"
-		"0.78\n"
-		"0.46\n"
-		"0.15\n"
-		"0.06\n";
-
-	print_2nd_derivative();
-	fflush(stdout);
-	cr_assert_stdout_eq_str(buffer, "");
-}
-
 Test(derivative_2_calc, test2)
 {
 	int	size = 9;
@@ -63,13 +46,35 @@ Test(calc_first_derivative_ll, test1)
 	int	i = 0;
 	eqpt_calculator_t	eqpt;
 		
-	file_open(&fd, "values.csv", OPEN_MODE);
+	file_open(&fd, "tests/values.csv", OPEN_MODE);
 	fd_parse(&eqpt, fd);
-	eqpt_calc_derivatives_run(&eqpt);
+	eqpt.deriv_head[0] = eqpt_calc_derivatives_run(1, eqpt.phs, eqpt.volumes);
 	while(eqpt.deriv_head[0]->n != NULL) {
 		cr_assert_eq((int) eqpt.deriv_head[0]->value, (int) results[i]);
 		eqpt.deriv_head[0] = eqpt.deriv_head[0]->n;
 		i++;
 	}
+	cr_assert_eq(i, size, "i = %d\n", i);
+}
+
+Test(calc_sec_derivative_ll, test1)
+{
+	FILE	*fd = NULL;
+	double	results[] = {0.266667, -0.111111, -0.633333, -0.8, -0.666667, 0.783333, 0.460333, 0.15, 0.0588333};
+	int	size = 9;
+	int	i = 0;
+	eqpt_calculator_t	eqpt;
+		
+	file_open(&fd, "tests/values.csv", OPEN_MODE);
+	fd_parse(&eqpt, fd);
+	eqpt.deriv_head[0] = eqpt_calc_derivatives_run(1, eqpt.phs, eqpt.volumes);
+	eqpt.deriv_head[1] = eqpt_calc_derivatives_run(2, eqpt.deriv_head[0], eqpt.volumes);
+	while(eqpt.deriv_head[1]->n != NULL) {
+		cr_assert_eq((int) eqpt.deriv_head[1]->value, (int) results[i], "got %g", eqpt.deriv_head[1]->value);
+		eqpt.deriv_head[1] = eqpt.deriv_head[1]->n;
+		i++;
+	}
+	delete_llist(eqpt.deriv_head[0]);
+	delete_llist(eqpt.deriv_head[1]);
 	cr_assert_eq(i, size, "i = %d\n", i);
 }

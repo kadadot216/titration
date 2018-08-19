@@ -40,8 +40,8 @@ void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
 	llval_t	*prev = NULL;
 	int	delim_i = 0;
 
-	eqpt->volumes = new_llval(eqpt->volumes);
-	eqpt->phs = new_llval(eqpt->phs);
+	eqpt->volumes = new_llval();
+	eqpt->phs = new_llval();
 	volume = eqpt->volumes;
 	ph = eqpt->phs;
 	while (getline(&line, &n, fd) != -1) {
@@ -49,13 +49,16 @@ void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
 		get_llvalstr(volume, line);
 		prev = volume;
 		volume = volume->n;
-		volume = new_llval(volume);
+		volume = new_llval();
 		prev->n = volume;
 		get_llvalstr(ph, &line[delim_i + 1]);
 		prev = ph;
 		ph = ph->n;
-		ph = new_llval(ph);
+		ph = new_llval();
 		prev->n = ph;
 	}
 	free(line);
+	prev = NULL;
+	ph = NULL;
+	volume = NULL;
 }

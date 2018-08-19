@@ -12,6 +12,6 @@
 
 double	eqpt_derivative_old(int counter, double *volumes, double *phs);
 double	eqpt_derivative(int n, llval_t *lph, llval_t *lvolume);
-void	eqpt_calc_derivatives_run(eqpt_calculator_t *);
+llval_t	*eqpt_calc_derivatives_run(int n, llval_t *llv_a, llval_t *llv_b);
 
 #endif /* __CALC_H__ */
