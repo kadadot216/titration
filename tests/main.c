@@ -29,6 +29,7 @@ int	main(int ac, char **av)
 	eqpt_get_derivatives(&eqpt);
 	eqpt_print_derivative(&eqpt);
 	eqpt_print_derivative_2(&eqpt);
+	eqpt_get_est(&eqpt);
 	eqpt_destroy(&eqpt);
 	return (0);
 }

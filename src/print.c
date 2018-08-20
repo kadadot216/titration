@@ -36,57 +36,57 @@ void	eqpt_print_derivative(eqpt_calculator_t *eqpt)
 	fx = NULL;
 }
 
+double	get_coefficient_est(llval_t *llv_a, llval_t *llv_b)
+{
+	return ((llv_a->n->value - llv_a->value) / (llv_b->n->value - llv_b->value) * 10);
+}
+
+void	print_est_ptprog(int n, llval_t *vol, llval_t *est)
+{
+	double	coefficient = 0.0;
+	double	eq_pt = 0.0;
+	llval_t	*lim = vol->n;
+
+	coefficient = ((est->n->value - est->value) / ((vol->n->value - vol->value) * 10));
+	while (n > 0 && vol->value <= lim->value - 0.10) {
+		// Need to take lim->value to - 2*OFFSET to update loop cycle
+		if (n > 0 && vol->value > lim->value - 0.20) {
+			est = est->n;
+			vol = vol->n;
+			lim = vol->n;
+			coefficient = ((est->n->value - est->value) / ((vol->n->value - vol->value) * 10));
+			n--;
+		}
+		if (eq_pt == 0.0 && est->value - 0.10 < 0.0)
+			eq_pt = vol->value;
+		printf("volume: %g ml -> %.2f\n", vol->value, est->value);
+		est->value += coefficient;
+		vol->value += 0.10;
+	}
+	printf("\nEquivalent point at %g ml\n", eq_pt);
+}
+
+void	eqpt_get_est(eqpt_calculator_t *eqpt)
+{
+	printf("\nSecond derivative estimated:\n");
+	print_est_ptprog(2, eqpt->volest, eqpt->est);
+}
+
 void	eqpt_print_derivative_2(eqpt_calculator_t *eqpt)
 {
 	llval_t	*x = llval_get_nbh(2, eqpt->volumes);
 	llval_t	*fx = eqpt->deriv_head[1];
-	llval_t	*eq = NULL;
-	llval_t	*fq = NULL;
-	llval_t	*lim = NULL;
-	double	coefficient = 0.0;
-	double	eq_pt = 0.0;
 
 	printf("Second derivative:\n");
 	while (llval_get_nbh(2, x) != NULL && llval_get_nbh(1, fx) != NULL) {
 		if (fx->value > 0 && llval_get_nbh(1, fx)->value < 0) {
-			eq = x;
-			fq = fx;
+			eqpt->volest = x;
+			eqpt->est = fx;
 		}
 		printf("volume: %g ml -> %.2f\n", x->value, fx->value);
 		x = x->n;
 		fx = fx->n;
 	}
-	printf("\nSecond derivative estimated:\n");
-	lim = eq->n;
-	// Compute the coeff value:
-	// (2nd val - 1st val) <= the values difference
-	// ((2nd vol - 1st vol) * 10) <= Nbs of iterations
-	coefficient = ((fq->n->value - fq->value) / ((eq->n->value - eq->value) * 10));
-	// On first node, while value is less than bound - 0.10
-	while (eq->value < lim->value - 0.10) {
-		// Save the equivalent pt in a way...
-		if (eq_pt == 0.0 && fq->value - 0.10 < 0.0) {
-			eq_pt = eq->value;
-		}
-		printf("volume: %g ml -> %.2f\n", eq->value, fq->value);
-		fq->value += coefficient;
-		eq->value += 0.10;
-	}
-	// This updates to the *next, needs to put inaloop
-	eq = eq->n;
-	lim = eq->n;
-	fq = fq->n;
-	coefficient = ((fq->n->value - fq->value) / ((eq->n->value - eq->value) * 10));
-	// On nodes after, while value is less than bound
-	while (eq->value < lim->value) {
-		if (eq_pt == 0.0 && fq->value - 0.10 < 0.0) {
-			eq_pt = eq->value;
-		}
-		printf("volume: %g ml -> %.2f\n", eq->value, fq->value);
-		fq->value += coefficient;
-		eq->value += 0.10;
-	}
-	printf("\nEquivalent point at %g ml\n", eq_pt);
 	x = NULL;
 	fx = NULL;
 }

@@ -23,6 +23,7 @@ typedef struct	eqpt_calculator_s {
 	llval_t	*phs;
 	llval_t	*deriv_head[MAX_DERIVATIVE];
 	llval_t	*est;
+	llval_t	*volest;
 }	eqpt_calculator_t;
 
 llval_t	*new_llval(void);
@@ -35,5 +36,6 @@ void	eqpt_print_derivative(eqpt_calculator_t *eqpt);
 void	eqpt_print_derivative_2(eqpt_calculator_t *eqpt);
 void	eqpt_get_derivatives(eqpt_calculator_t *eqpt);
 void	eqpt_destroy(eqpt_calculator_t *eqpt);
+void	eqpt_get_est(eqpt_calculator_t *eqpt);
 
 #endif /* __TITRATION_H__ */
