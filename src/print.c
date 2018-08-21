@@ -8,12 +8,14 @@
 #include "titration.h"
 
 // Need to create funcs:
-// eqpt_get_eqpt(&eqpt)
+// eqpt_get_est(&eqpt)
 // ...
 // print_first_derivative(&eqpt)
 // print_sec_derivative(&eqpt)
 // print_derivative_est(&eqpt)
 // TODO: Need to add security checks
+// TODO: If node->n->value < node->value, cancel parsing. (Incorrect val)
+// TODO: Not float or int nb while parsing, cancel (Incorrect val)
 
 void	eqpt_print_derivative(eqpt_calculator_t *eqpt)
 {
