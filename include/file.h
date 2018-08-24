@@ -9,6 +9,7 @@
 #define __FILE_H__
 
 #include "types.h"
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 

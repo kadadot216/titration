@@ -8,7 +8,7 @@
 #ifndef __TITRATION_H__
 #define __TITRATION_H__
 
-#include <stdio.h>
+#include "file.h"
 #include "types.h"
 
 #define	MAX_DERIVATIVE	(2)
@@ -36,9 +36,9 @@ void	eqpt_print_estimate(int n, calcnode_t *estimate);
 void	eqpt_print_estpt(eqpt_calculator_t *eqpt);
 void	eqpt_routine(eqpt_calculator_t *eqpt);
 void	eqpt_sort_volumes(eqpt_calculator_t *eqpt);
+double	eqpt_derivative(calcnode_t *node);
+calcnode_t	*eqpt_calc_derivatives_run(int n, calcnode_t *node);
 void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd);
-void	print_calcnode(calcnode_t *start);
-void	print_titr_vals(calcnode_t *node);
 calcnode_t	*calcnode_get_nbh(int n, calcnode_t *val);
 calcnode_t	*calcnode_new(calcnode_t *new);
 int	exit_print_help(char **av, int status);

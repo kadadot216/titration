@@ -5,7 +5,6 @@
 ** Main file for 109titration
 */
 
-#include "file.h"
 #include "titration.h"
 
 int	main(int ac, char **av)

@@ -5,9 +5,7 @@
 ** Parsing related functions
 */
 
-#include <stdlib.h>
 #include "titration.h"
-#include "file.h"
 
 static int	find_delim_i(char const *str, char const d)
 {

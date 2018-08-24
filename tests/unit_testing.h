@@ -10,6 +10,7 @@
 
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
+#include "titration.h"
 
 #define	T_DERIV1BUFF ("Derivative:\n"		\
 "volume: 2 ml -> 1.00\n"	\
@@ -51,5 +52,8 @@
 
 void	redirect_all_std(void);
 void	print_2nd_derivative(void);
+void	print_calcnode(calcnode_t *start);
+void	print_titr_vals(calcnode_t *node);
+double	eqpt_derivative_old(int counter, double *phs, double *volumes);
 
 #endif /* __UNIT_TESTING_H__ */

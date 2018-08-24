@@ -5,8 +5,6 @@
 ** Titration related funcs
 */
 
-#include <stdlib.h>
-#include "types.h"
 #include "titration.h"
 
 void	calcnode_init(calcnode_t *calcnode)
