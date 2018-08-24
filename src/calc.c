@@ -21,7 +21,7 @@ double	eqpt_derivative_old(int counter, double *phs, double *volumes)
 
 	if (counter <= 1) {
 		return ((phs[2] - phs[0]) / (volumes[2] - volumes[0]));
-	}	
+	}
 	y1 = eqpt_derivative_old((counter - 1), &phs[2], &volumes[2]);
 	y2 = eqpt_derivative_old((counter - 1), &phs[0], &volumes[0]);
 	derivative_2 = ((y2 - y1) / (volumes[3] - volumes[1]));
@@ -46,7 +46,7 @@ calcnode_t	*eqpt_calc_derivatives_run(int n, calcnode_t *start)
 	calcnode_t	*prev = NULL;
 	calcnode_t	*res = NULL;
 	calcnode_t	*res_head = NULL;
-	
+
 	csor = start;
 	res = calcnode_new(res);
 	res_head = res;

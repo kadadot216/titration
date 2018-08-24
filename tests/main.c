@@ -27,13 +27,7 @@ int	main(int ac, char **av)
 	eqpt_init(&eqpt);
 	fd_parse(&eqpt, fd);
 	fclose(fd);
-	eqpt_sort_volumes(&eqpt);
-	eqpt_get_derivatives(&eqpt);
-	eqpt_print_derivative(&eqpt);
-	eqpt_print_estpt(&eqpt);
-	eqpt_print_derivative_2(&eqpt);
-	eqpt_print_estimate(2, eqpt.estimate);
-	eqpt_print_estpt(&eqpt);
+	eqpt_routine(&eqpt);
 	eqpt_destroy(&eqpt);
 	return (0);
 }

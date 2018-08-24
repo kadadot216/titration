@@ -10,7 +10,7 @@
 
 void	file_print_ctnt(FILE *fd)
 {
-	char	*str = NULL;	
+	char	*str = NULL;
 	size_t	n = 0;
 
 	while (getline(&str, &n, fd) != -1) {

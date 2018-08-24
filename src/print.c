@@ -10,7 +10,7 @@
 int	exit_print_help(char **av, int status)
 {
 	printf("USAGE\n\t\t%s file\n\nDESCRIPTION\n\t\t"
-		"file a csv containing \"vol;ph\" lines\n", av[0]);
+	"file a csv containing \"vol;ph\" lines\n", av[0]);
 	return (status);
 }
 
@@ -24,18 +24,17 @@ void	eqpt_print_estimate(int n, calcnode_t *estimate)
 	printf("\nSecond derivative estimated:\n");
 	step = step_compute(csor, next_stop);
 	while (n > 0 && csor->vol < next_stop->vol && next_stop->n != NULL) {
-		// Need to take next_stop->csor to - 2*OFFSET to update loop cycle
-		if (n > 0 && csor->vol > next_stop->vol - 0.10) {
+		if (n > 0 && csor->vol > next_stop->vol - VOL_STEP) {
 			csor = csor->n;
 			next_stop = csor->n;
 			step = step_compute(csor, next_stop);
 			n--;
 		}
-		if (eq_pt == 0.0 && estimate->ph - 0.10 < 0.0)
+		if (eq_pt == 0.0 && estimate->ph - VOL_STEP < 0.0)
 			eq_pt = csor->vol;
 		printf("volume: %g ml -> %.2f\n", csor->vol, csor->ph);
 		csor->ph += step;
-		csor->vol += 0.10;
+		csor->vol += VOL_STEP;
 	}
 	estimate->vol = eq_pt;
 }
@@ -66,7 +65,8 @@ void	eqpt_print_derivative_2(eqpt_calculator_t *eqpt)
 	printf("\n");
 	printf("Second derivative:\n");
 	while (calcnode_get_nbh(2, csor) != NULL) {
-		if (eqpt->estimate == NULL || (csor->ph > 0 && csor->n->ph < 0)) {
+		if (eqpt->estimate == NULL || (csor->ph > 0 &&
+		csor->n->ph < 0)) {
 			eqpt->estimate = csor;
 		}
 		printf("volume: %g ml -> %.2f\n", csor->vol, csor->ph);

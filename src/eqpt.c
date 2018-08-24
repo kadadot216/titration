@@ -8,6 +8,17 @@
 #include <stdlib.h>
 #include "titration.h"
 
+void	eqpt_routine(eqpt_calculator_t *eqpt)
+{
+	eqpt_sort_volumes(eqpt);
+	eqpt_get_derivatives(eqpt);
+	eqpt_print_derivative(eqpt);
+	eqpt_print_estpt(eqpt);
+	eqpt_print_derivative_2(eqpt);
+	eqpt_print_estimate(2, eqpt->estimate);
+	eqpt_print_estpt(eqpt);
+}
+
 void	eqpt_init(eqpt_calculator_t *eqpt)
 {
 	int	i = 0;
