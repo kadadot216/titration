@@ -6,9 +6,6 @@
 */
 
 #include "unit_testing.h"
-#include "../include/calc.h"
-#include "../include/file.h"
-#include "../include/titration.h"
 
 Test(derivative_calc, test1)
 {

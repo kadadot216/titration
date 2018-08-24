@@ -5,7 +5,6 @@
 ** eqpt structure related functions
 */
 
-#include <stdlib.h>
 #include "titration.h"
 
 void	eqpt_routine(eqpt_calculator_t *eqpt)

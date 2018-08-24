@@ -5,7 +5,6 @@
 ** Filename
 */
 
-#include <string.h>
 #include "file.h"
 
 void	file_print_ctnt(FILE *fd)

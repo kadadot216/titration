@@ -6,8 +6,6 @@
 */
 
 #include "unit_testing.h"
-#include "file.h"
-#include "titration.h"
 
 Test(print_derivative, test1, .init=redirect_all_std)
 {

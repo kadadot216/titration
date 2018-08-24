@@ -5,10 +5,7 @@
 ** GDB Testing main
 */
 
-#include <stdio.h>
 #include "titration.h"
-#include "file.h"
-#include "calc.h"
 
 int	main(int ac, char **av)
 {

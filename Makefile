@@ -37,7 +37,6 @@ SRC		=	src/file.c	\
 			src/calc.c	\
 			src/parsing.c	\
 			src/sort.c	\
-			src/debug.c	\
 			src/print.c	\
 			src/eqpt.c	\
 			src/calcnode.c
@@ -47,9 +46,11 @@ OBJ		+=	$(MAIN:.c=.o)
 
 #	Tests settings
 TEST_NAME	=	unit_tests
-TEST_SRC	=	tests/redirect.c			\
-			tests/t_read_file.c			\
+TEST_SRC	=	tests/helpers/redirect.c		\
 			tests/helpers/print_2nd_derivative.c	\
+			tests/helpers/debug.c			\
+			tests/helpers/calc.c			\
+			tests/t_read_file.c			\
 			tests/t_calc_derivative.c		\
 			tests/t_print_file.c			\
 			tests/t_sort.c				\
