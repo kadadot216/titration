@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** print_2nd_derivative.c
-** File description:
-** Prints the 2nd derivative from pre-existing data
-*/
-
 #include "../unit_testing.h"
 
 void	print_2nd_derivative(void)

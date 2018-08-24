@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** file.c
-** File description:
-** Filename
-*/
-
 #include "file.h"
 
 FILE	*file_open(char const *filename, char const *mode)

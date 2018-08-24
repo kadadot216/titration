@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** eqpt.c
-** File description:
-** eqpt structure related functions
-*/
-
 #include "titration.h"
 
 void	eqpt_routine(eqpt_calculator_t *eqpt)
@@ -22,7 +15,7 @@ void	eqpt_init(eqpt_calculator_t *eqpt)
 {
 	int	i = 0;
 
-	eqpt->start = NULL;
+	eqpt->start = calcnode_new();
 	eqpt->estimate = NULL;
 	while (i < MAX_DERIVATIVE) {
 		eqpt->deriv_head[i] = NULL;

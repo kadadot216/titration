@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** titration.c
-** File description:
-** Titration related funcs
-*/
-
 #include "titration.h"
 
 void	calcnode_init(calcnode_t *calcnode)
@@ -14,9 +7,10 @@ void	calcnode_init(calcnode_t *calcnode)
 	calcnode->n = NULL;
 }
 
-calcnode_t	*calcnode_new(calcnode_t *new)
+calcnode_t	*calcnode_new(void)
 {
-	new = malloc(sizeof(calcnode_t));
+	calcnode_t	*new = malloc(sizeof(calcnode_t));
+
 	if (new == NULL) {
 		return (new);
 	}
@@ -48,4 +42,10 @@ calcnode_t	*calcnode_get_nbh(int n, calcnode_t *node)
 		n--;
 	}
 	return (csort);
+}
+
+void	set_calcnode(calcnode_t *calcnode, double vol, double ph)
+{
+	calcnode->vol = vol;
+	calcnode->ph = ph;
 }

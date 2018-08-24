@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** sort.c
-** File description:
-** Sorting program's functions
-*/
-
 #include "titration.h"
 
 void	swap_nodes(calcnode_t *n1, calcnode_t *n2)

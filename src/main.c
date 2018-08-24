@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** main.c
-** File description:
-** Main file for 109titration
-*/
-
 #include "titration.h"
 
 int	main(int ac, char **av)

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** t_print_file.c
-** File description:
-** UT for printing file
-*/
-
 #include "unit_testing.h"
 
 Test(string_print_csv_filename, t1, .init=redirect_all_std)

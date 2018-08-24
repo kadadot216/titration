@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** main.c
-** File description:
-** GDB Testing main
-*/
-
 #include "titration.h"
 
 int	main(int ac, char **av)
@@ -21,6 +14,7 @@ int	main(int ac, char **av)
 	eqpt_init(&eqpt);
 	if (!fd_parse(&eqpt, fd)) {
 		fclose(fd);
+		calclist_delete(eqpt.start);
 		return (exit_print_help(av, 84));
 	}
 	fclose(fd);

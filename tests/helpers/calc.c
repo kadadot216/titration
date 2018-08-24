@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** calc.c
-** File description:
-** Old calc function
-*/
-
 double	eqpt_derivative_old(int counter, double *phs, double *volumes)
 {
 	double	y1 = 0.0;

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** print.c
-** File description:
-** Print related functions
-*/
-
 #include "titration.h"
 
 int	exit_print_help(char **av, int status)

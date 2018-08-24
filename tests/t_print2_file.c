@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** t_print2_file.c
-** File description:
-** More TUs for printing
-*/
-
 #include "unit_testing.h"
 
 Test(print_derivative, test1, .init=redirect_all_std)

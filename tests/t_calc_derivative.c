@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** t_calc_derivative.c
-** File description:
-** UT Derivative calc
-*/
-
 #include "unit_testing.h"
 
 Test(derivative_calc, test1)

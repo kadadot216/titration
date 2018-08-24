@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** parsing.c
-** File description:
-** Parsing related functions
-*/
-
 #include "titration.h"
 
 static int	find_delim_i(char const *str, char const d)
@@ -17,12 +10,6 @@ static int	find_delim_i(char const *str, char const d)
 	}
 	delim_i = i;
 	return (delim_i);
-}
-
-static void	set_calcnode(calcnode_t *calcnode, double vol, double ph)
-{
-	calcnode->vol = vol;
-	calcnode->ph = ph;
 }
 
 static void	set_calcnodestimater(calcnode_t *calcnode, char *line)
@@ -52,23 +39,35 @@ static int	fd_valid_line(char *const line)
 	return (1);
 }
 
+static int	valid_volume(calcnode_t	*prev, calcnode_t *csor)
+{
+	if (prev == NULL) {
+		return (1);
+	} else if (prev->vol == csor->vol) {
+		return (0);
+	} else if (prev->vol != csor->vol) {
+		return (1);
+	}
+	return (0);
+}
+
 int	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
 {
 	char	*line = NULL;
 	uint_t	status = 1;
 	size_t	n = 0;
-	calcnode_t	*csor = NULL;
+	calcnode_t	*csor = eqpt->start;
 	calcnode_t	*prev = NULL;
 
-	eqpt->start = calcnode_new(eqpt->start);
-	csor = eqpt->start;
 	while (getline(&line, &n, fd) != -1) {
-		if (!fd_valid_line(line))
-			return (0);
 		set_calcnodestimater(csor, line);
+		if (!fd_valid_line(line) || !valid_volume(prev, csor)) {
+			free(line);
+			return (0);
+		}
 		prev = csor;
 		csor = csor->n;
-		csor = calcnode_new(csor);
+		csor = calcnode_new();
 		prev->n = csor;
 	}
 	if (line[0] == '\0')

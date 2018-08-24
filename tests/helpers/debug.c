@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** prnting.c
-** File description:
-** Debugging related functions
-*/
-
 #include "titration.h"
 
 void	print_titr_vals(calcnode_t *node)

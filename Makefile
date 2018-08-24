@@ -1,10 +1,3 @@
-##
-## EPITECH PROJECT, 2018
-## Makefile
-## File description:
-## Makefile for bsq
-##
-
 CC		=	gcc
 DBCC		=	gcc -g
 RM		=	rm -f
@@ -31,7 +24,7 @@ CFLAGS		+=	-I$(HDPATH)
 LDFLAGS		=	-L./$(LIB_DIR)
 LIBFLAG		=	# -l$(LIB_NAMEDIR)
 
-NAME		=	109titration
+NAME		=	titration
 MAIN		=	src/main.c
 SRC		=	src/file.c	\
 			src/calc.c	\

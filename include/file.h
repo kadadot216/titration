@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** file.h
-** File description:
-** Header file for file related functions
-*/
-
 #ifndef __FILE_H__
 #define __FILE_H__
 

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** t_sort.c
-** File description:
-** Sort linked lists
-*/
-
 #include "unit_testing.h"
 
 Test(bubble_sort, unordered_volumes, .init=redirect_all_std)
