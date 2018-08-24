@@ -43,7 +43,7 @@ Test(print_derivative_2, test1, .init=redirect_all_std)
 {
 	FILE	*fd = 0;
 	eqpt_calculator_t	eqpt;
-	char	*buffer = "Second derivative:\n"
+	char	*buffer = "\nSecond derivative:\n"
 		"volume: 3 ml -> -0.27\n"
 		"volume: 5 ml -> 0.11\n"
 		"volume: 6 ml -> 0.63\n"

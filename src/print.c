@@ -7,16 +7,6 @@
 
 #include "titration.h"
 
-// Need to create funcs:
-// eqpt_get_estimate(&eqpt)
-// ...
-// print_first_derivative(&eqpt)
-// print_sec_derivative(&eqpt)
-// print_derivative_estimate(&eqpt)
-// TODO: Need to add security checks
-// TODO: If node->n->vol < node->vol, cancel parsing. (Incorrect val)
-// TODO: Not float or int nb while parsing, cancel (Incorrect val)
-
 double	step_compute(calcnode_t *node, calcnode_t *next)
 {
 	return ((next->ph - node->ph) / ((next->vol - node->vol) * 10));
@@ -64,13 +54,14 @@ void	eqpt_print_derivative(eqpt_calculator_t *eqpt)
 
 void	eqpt_print_estpt(eqpt_calculator_t *eqpt)
 {
-	printf("\nEquivalent point at %g ml\n\n", eqpt->estimate->vol);
+	printf("\nEquivalent point at %g ml\n", eqpt->estimate->vol);
 }
 
 void	eqpt_print_derivative_2(eqpt_calculator_t *eqpt)
 {
 	calcnode_t	*csor = eqpt->deriv_head[1];
 
+	printf("\n");
 	printf("Second derivative:\n");
 	while (calcnode_get_nbh(2, csor) != NULL) {
 		if (eqpt->estimate == NULL || (csor->ph > 0 && csor->n->ph < 0)) {

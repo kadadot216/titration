@@ -27,16 +27,13 @@ int	main(int ac, char **av)
 	eqpt_init(&eqpt);
 	fd_parse(&eqpt, fd);
 	fclose(fd);
-	print_titr_vals(eqpt.start);
 	eqpt_sort_volumes(&eqpt);
-	//eqpt_get_derivatives(&eqpt);
-	printf("\n\nAfter:\n");
-	print_titr_vals(eqpt.start);
-	//eqpt_print_derivative(&eqpt);
-	//eqpt_print_estpt(&eqpt);
-	//eqpt_print_derivative_2(&eqpt);
-	//eqpt_print_estimate(2, eqpt.estimate);
-	//eqpt_print_estpt(&eqpt);
-	//eqpt_destroy(&eqpt);
+	eqpt_get_derivatives(&eqpt);
+	eqpt_print_derivative(&eqpt);
+	eqpt_print_estpt(&eqpt);
+	eqpt_print_derivative_2(&eqpt);
+	eqpt_print_estimate(2, eqpt.estimate);
+	eqpt_print_estpt(&eqpt);
+	eqpt_destroy(&eqpt);
 	return (0);
 }
