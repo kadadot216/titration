@@ -54,6 +54,7 @@ static int	fd_valid_line(char *const line)
 int	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
 {
 	char	*line = NULL;
+	uint_t	status = 1;
 	size_t	n = 0;
 	calcnode_t	*csor = NULL;
 	calcnode_t	*prev = NULL;
@@ -61,17 +62,16 @@ int	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
 	eqpt->start = calcnode_new(eqpt->start);
 	csor = eqpt->start;
 	while (getline(&line, &n, fd) != -1) {
-		if (!fd_valid_line(line)) {
+		if (!fd_valid_line(line))
 			return (0);
-		}
 		set_calcnodestimater(csor, line);
 		prev = csor;
 		csor = csor->n;
 		csor = calcnode_new(csor);
 		prev->n = csor;
 	}
+	if (line[0] == '\0')
+		status = 0;
 	free(line);
-	prev = NULL;
-	csor = NULL;
-	return (1);
+	return (status);
 }

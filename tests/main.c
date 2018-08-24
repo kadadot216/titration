@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 	}
 	eqpt_init(&eqpt);
 	if (!fd_parse(&eqpt, fd)) {
+		fclose(fd);
 		return (exit_print_help(av, 84));
 	}
 	fclose(fd);
