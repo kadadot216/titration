@@ -26,3 +26,14 @@ void	print_calcnode(calcnode_t *val)
 		cs = cs->n;
 	}
 }
+
+void	file_print_ctnt(FILE *fd)
+{
+	char	*str = NULL;
+	size_t	n = 0;
+
+	while (getline(&str, &n, fd) != -1) {
+		printf("%s", str);
+	}
+	free(str);
+}

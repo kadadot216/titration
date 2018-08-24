@@ -9,10 +9,10 @@
 
 int	main(int ac, char **av)
 {
-	FILE	*fd = NULL;
 	eqpt_calculator_t	eqpt;
+	FILE	*fd = NULL;
 
-	if ((ac != 2) || (!file_open(&fd, av[1], OPEN_MODE))) {
+	if ((ac != 2) || (((fd = file_open(av[1], OPEN_MODE)) == NULL))) {
 		return (exit_print_help(av, 84));
 	}
 	if (av[1][0] == '-' && av[1][1] == 'h' && av[1][2] == '\0') {

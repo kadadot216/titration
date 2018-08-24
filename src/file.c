@@ -7,27 +7,6 @@
 
 #include "file.h"
 
-void	file_print_ctnt(FILE *fd)
-{
-	char	*str = NULL;
-	size_t	n = 0;
-
-	while (getline(&str, &n, fd) != -1) {
-		printf("%s", str);
-	}
-	free(str);
-}
-
-int	file_open(FILE **fd, char const *filename, char const *mode)
-{
-	*fd = fopen(filename, mode);
-
-	if (fd == NULL)
-		return (0);
-	else
-		return (1);
-}
-
 int	file_has_extension(char const *filename, char const *ext)
 {
 	uint_t	csor = 0;
@@ -43,4 +22,18 @@ int	file_has_extension(char const *filename, char const *ext)
 		return (1);
 	}
 	return (0);
+}
+
+FILE	*file_open(char const *filename, char const *mode)
+{
+	FILE	*fd = NULL;
+
+	if (!file_has_extension(filename, DATA_EXT)) {
+		return (NULL);
+	}
+	fd = fopen(filename, mode);
+	if (fd == NULL)
+		return (NULL);
+	else
+		return (fd);
 }

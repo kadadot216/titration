@@ -19,6 +19,6 @@
 
 void	file_print_ctnt(FILE *fd);
 int	file_has_extension(char const *filename, char const *ext);
-int	file_open(FILE **fd, char const *filename, char const *mode);
+FILE	*file_open(char const *filename, char const *mode);
 
 #endif /* __FILE_H__ */
