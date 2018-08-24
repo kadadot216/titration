@@ -8,10 +8,6 @@
 #ifndef __TYPES_H__
 #define __TYPES_H__
 
-typedef	enum	e_bool {
-	FALSE = 0,
-	TRUE = !FALSE
-}	bool_t;
 typedef	unsigned int	uint_t;
 
 #endif /* __TYPES_H__ */

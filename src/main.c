@@ -19,7 +19,9 @@ int	main(int ac, char **av)
 		return (exit_print_help(av, 0));
 	}
 	eqpt_init(&eqpt);
-	fd_parse(&eqpt, fd);
+	if (!fd_parse(&eqpt, fd)) {
+		return (exit_print_help(av, 84));
+	}
 	fclose(fd);
 	eqpt_routine(&eqpt);
 	eqpt_destroy(&eqpt);

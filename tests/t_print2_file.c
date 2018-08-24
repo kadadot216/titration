@@ -12,7 +12,7 @@ Test(print_derivative, test1, .init=redirect_all_std)
 	FILE	*fd = 0;
 	eqpt_calculator_t	eqpt;
 
-	if (file_open(&fd, "tests/values.csv", "r")) {
+	if ((fd = file_open("tests/values.csv", "r")) != NULL) {
 		fd_parse(&eqpt, fd);
 		eqpt_get_derivatives(&eqpt);
 		eqpt_print_derivative(&eqpt);
@@ -30,7 +30,7 @@ Test(print_derivative_2, test1, .init=redirect_all_std)
 	FILE	*fd = 0;
 	eqpt_calculator_t	eqpt;
 
-	if (file_open(&fd, "tests/values.csv", "r")) {
+	if ((fd = file_open("tests/values.csv", "r"))) {
 		fd_parse(&eqpt, fd);
 		eqpt_get_derivatives(&eqpt);
 		eqpt_print_derivative_2(&eqpt);

@@ -50,7 +50,6 @@ TEST_SRC	=	tests/helpers/redirect.c		\
 			tests/helpers/print_2nd_derivative.c	\
 			tests/helpers/debug.c			\
 			tests/helpers/calc.c			\
-			tests/t_read_file.c			\
 			tests/t_calc_derivative.c		\
 			tests/t_print_file.c			\
 			tests/t_sort.c				\

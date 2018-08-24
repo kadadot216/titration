@@ -11,7 +11,7 @@ Test(string_print_csv_filename, t1, .init=redirect_all_std)
 {
 	FILE	*fd = NULL;
 
-	if (file_open(&fd, "tests/values.csv", "r")) {
+	if ((fd = file_open("tests/values.csv", "r"))) {
 		file_print_ctnt(fd);
 		fflush(stdout);
 		cr_assert_stdout_eq_str(T_FILEBUFF, "");
@@ -26,7 +26,7 @@ Test(print_titration_calclist, test1, .init=redirect_all_std)
 	FILE	*fd = 0;
 	eqpt_calculator_t	eqpt;
 
-	if (file_open(&fd, "tests/values.csv", "r")) {
+	if ((fd = file_open("tests/values.csv", "r"))) {
 		fd_parse(&eqpt, fd);
 		print_titr_vals(eqpt.start);
 		fflush(stdout);

@@ -38,10 +38,10 @@ void	eqpt_routine(eqpt_calculator_t *eqpt);
 void	eqpt_sort_volumes(eqpt_calculator_t *eqpt);
 double	eqpt_derivative(calcnode_t *node);
 calcnode_t	*eqpt_calc_derivatives_run(int n, calcnode_t *node);
-void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd);
 calcnode_t	*calcnode_get_nbh(int n, calcnode_t *val);
 calcnode_t	*calcnode_new(calcnode_t *new);
 int	exit_print_help(char **av, int status);
+int	fd_parse(eqpt_calculator_t *eqpt, FILE *fd);
 double	step_compute(calcnode_t *node, calcnode_t *next);
 
 #endif /* __TITRATION_H__ */

@@ -9,20 +9,19 @@
 
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
-
-	char	*file = "tests/values_unordered.csv";
-	FILE	*fd = NULL;
-	bool_t	status = FALSE;
 	eqpt_calculator_t	eqpt;
+	FILE	*fd = NULL;
 
-	status = ((bool_t) file_open(&fd, file, OPEN_MODE));
-	if (status == FALSE) {
-		return (84);
+	if ((ac != 2) || (((fd = file_open(av[1], OPEN_MODE)) == NULL))) {
+		return (exit_print_help(av, 84));
+	}
+	if (av[1][0] == '-' && av[1][1] == 'h' && av[1][2] == '\0') {
+		return (exit_print_help(av, 0));
 	}
 	eqpt_init(&eqpt);
-	fd_parse(&eqpt, fd);
+	if (!fd_parse(&eqpt, fd)) {
+		return (exit_print_help(av, 84));
+	}
 	fclose(fd);
 	eqpt_routine(&eqpt);
 	eqpt_destroy(&eqpt);

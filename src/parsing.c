@@ -34,7 +34,24 @@ static void	set_calcnodestimater(calcnode_t *calcnode, char *line)
 	delim_i = 0;
 }
 
-void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
+static int	fd_valid_line(char *const line)
+{
+	uint_t	i = 0;
+
+	if (line == NULL || line[0] == '\0') {
+		return (0);
+	}
+	while (line[i] != '\0' && line[i] != '\n') {
+		if (!((line[i] >= '0' && line[i] <= '9') ||
+		line[i] == DATA_SEP || line[i] == '.')) {
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
 {
 	char	*line = NULL;
 	size_t	n = 0;
@@ -44,6 +61,9 @@ void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
 	eqpt->start = calcnode_new(eqpt->start);
 	csor = eqpt->start;
 	while (getline(&line, &n, fd) != -1) {
+		if (!fd_valid_line(line)) {
+			return (0);
+		}
 		set_calcnodestimater(csor, line);
 		prev = csor;
 		csor = csor->n;
@@ -53,4 +73,5 @@ void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
 	free(line);
 	prev = NULL;
 	csor = NULL;
+	return (1);
 }

@@ -12,7 +12,7 @@ Test(bubble_sort, unordered_volumes, .init=redirect_all_std)
 	FILE	*fd = 0;
 	eqpt_calculator_t	eqpt;
 
-	if (file_open(&fd, "tests/values_unordered.csv", "r")) {
+	if ((fd = file_open("tests/values_unordered.csv", "r"))) {
 		fd_parse(&eqpt, fd);
 		fclose(fd);
 		eqpt_sort_volumes(&eqpt);

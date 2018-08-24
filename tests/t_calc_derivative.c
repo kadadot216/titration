@@ -48,7 +48,7 @@ Test(calc_first_derivative_ll, test1)
 	int	i = 0;
 	eqpt_calculator_t	eqpt;
 
-	file_open(&fd, "tests/values.csv", OPEN_MODE);
+	fd = file_open("tests/values.csv", OPEN_MODE);
 	fd_parse(&eqpt, fd);
 	eqpt.deriv_head[0] = eqpt_calc_derivatives_run(1, eqpt.start);
 	while (eqpt.deriv_head[0]->n->n != NULL) {
@@ -68,7 +68,7 @@ Test(calc_sec_derivative_ll, test1)
 	int	i = 0;
 	eqpt_calculator_t	eqpt;
 
-	file_open(&fd, "tests/values.csv", OPEN_MODE);
+	fd = file_open("tests/values.csv", OPEN_MODE);
 	fd_parse(&eqpt, fd);
 	eqpt.deriv_head[0] = eqpt_calc_derivatives_run(1, eqpt.start);
 	eqpt.deriv_head[1] = eqpt_calc_derivatives_run(2, eqpt.deriv_head[0]);
