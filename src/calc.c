@@ -23,45 +23,42 @@ double	eqpt_derivative_old(int counter, double *phs, double *volumes)
 	return (derivative_2);
 }
 
-double	eqpt_derivative(int n, llval_t *llv_a, llval_t *llv_b)
+double	eqpt_derivative(calcnode_t *node)
 {
 	double	num = 0.0;
 	double	den = 0.0;
 	double	derivative = 0.0;
 
-	num = (llval_get_nbh(2, llv_a)->value - llv_a->value);
-	den = (llval_get_nbh(n + 1, llv_b)->value - llval_get_nbh(n - 1,llv_b)->value);
+	num = node->n->n->ph - node->ph;
+	den = (node->n->n->vol - node->vol);
 	derivative = (num / den);
 	return (derivative);
 }
 
-llval_t	*eqpt_calc_derivatives_run(int n, llval_t *llv_a, llval_t *llv_b)
+calcnode_t	*eqpt_calc_derivatives_run(int n, calcnode_t *start)
 {
-	llval_t	*cs = NULL;
-	llval_t	*prev = NULL;
-	llval_t	*a = llv_a;
-	llval_t	*b = llv_b;
-	llval_t	*res = NULL;
+	calcnode_t	*csor = NULL;
+	calcnode_t	*prev = NULL;
+	calcnode_t	*res = NULL;
+	calcnode_t	*res_head = NULL;
 	
-	res = new_llval();
-	cs = res;
-	while (llval_get_nbh(n + 1, a) != NULL && llval_get_nbh(2, b)->n != NULL) {
-		cs->value = eqpt_derivative(n, a, b);
-		a = a->n;
-		b = b->n;
-		prev = cs;
-		cs = cs->n;
-		cs = new_llval();
-		prev->n = cs;
+	res = calcnode_new();
+	res_head = res;
+	csor = start;
+	while (calcnode_get_nbh(n + 1, csor) != NULL) {
+		res->ph = eqpt_derivative(csor);
+		res->vol = csor->n->vol;
+		prev = res;
+		csor = csor->n;
+		res = res->n;
+		res = calcnode_new();
+		prev->n = res;
 	}
-	cs = NULL;
-	a = NULL;
-	b = NULL;
-	return (res);
+	return (res_head);
 }
 
 void	eqpt_get_derivatives(eqpt_calculator_t *eqpt)
 {
-	eqpt->deriv_head[0] = eqpt_calc_derivatives_run(1, eqpt->phs, eqpt->volumes);
-	eqpt->deriv_head[1] = eqpt_calc_derivatives_run(2, eqpt->deriv_head[0], eqpt->volumes);
+	eqpt->deriv_head[0] = eqpt_calc_derivatives_run(1, eqpt->start);
+	eqpt->deriv_head[1] = eqpt_calc_derivatives_run(2, eqpt->deriv_head[0]);
 }

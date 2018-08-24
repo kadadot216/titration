@@ -48,9 +48,9 @@ Test(calc_first_derivative_ll, test1)
 		
 	file_open(&fd, "tests/values.csv", OPEN_MODE);
 	fd_parse(&eqpt, fd);
-	eqpt.deriv_head[0] = eqpt_calc_derivatives_run(1, eqpt.phs, eqpt.volumes);
-	while(eqpt.deriv_head[0]->n != NULL) {
-		cr_assert_eq((int) eqpt.deriv_head[0]->value, (int) results[i]);
+	eqpt.deriv_head[0] = eqpt_calc_derivatives_run(1, eqpt.start);
+	while(eqpt.deriv_head[0]->n->n != NULL) {
+		cr_assert_eq((int) eqpt.deriv_head[0]->ph, (int) results[i]);
 		eqpt.deriv_head[0] = eqpt.deriv_head[0]->n;
 		i++;
 	}
@@ -67,14 +67,14 @@ Test(calc_sec_derivative_ll, test1)
 		
 	file_open(&fd, "tests/values.csv", OPEN_MODE);
 	fd_parse(&eqpt, fd);
-	eqpt.deriv_head[0] = eqpt_calc_derivatives_run(1, eqpt.phs, eqpt.volumes);
-	eqpt.deriv_head[1] = eqpt_calc_derivatives_run(2, eqpt.deriv_head[0], eqpt.volumes);
-	while(eqpt.deriv_head[1]->n != NULL) {
-		cr_assert_eq((int) eqpt.deriv_head[1]->value, (int) results[i], "got %g", eqpt.deriv_head[1]->value);
+	eqpt.deriv_head[0] = eqpt_calc_derivatives_run(1, eqpt.start);
+	eqpt.deriv_head[1] = eqpt_calc_derivatives_run(2, eqpt.deriv_head[0]);
+	while(eqpt.deriv_head[1]->n->n != NULL) {
+		cr_assert_eq((int) eqpt.deriv_head[1]->ph, (int) results[i], "got %g", eqpt.deriv_head[1]->vol);
 		eqpt.deriv_head[1] = eqpt.deriv_head[1]->n;
 		i++;
 	}
-	delete_llist(eqpt.deriv_head[0]);
-	delete_llist(eqpt.deriv_head[1]);
+	calclist_delete(eqpt.deriv_head[0]);
+	calclist_delete(eqpt.deriv_head[1]);
 	cr_assert_eq(i, size, "i = %d\n", i);
 }

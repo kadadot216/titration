@@ -21,44 +21,38 @@ static int	find_delim_i(char const *str, char const d)
 	return (delim_i);
 }
 
-static void	get_llval(llval_t *llval, double value)
+static void	set_calcnode(calcnode_t *calcnode, double vol, double ph)
 {
-	llval->value = value;
+	calcnode->vol = vol;
+	calcnode->ph = ph;
 }
 
-static void	get_llvalstr(llval_t *llval, char *line)
+static void	set_calcnodestimater(calcnode_t *calcnode, char *line)
 {
-	get_llval(llval, (atof(line)));
+	int	delim_i = 0;
+
+	delim_i = find_delim_i(line, DATA_SEP);
+	set_calcnode(calcnode, (atof(line)), (atof(&line[delim_i + 1])));
+	delim_i = 0;
 }
 
 void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
 {
 	char	*line = NULL;
 	size_t	n = 0;
-	llval_t	*volume = NULL;
-	llval_t	*ph = NULL;
-	llval_t	*prev = NULL;
-	int	delim_i = 0;
+	calcnode_t	*csor = NULL;
+	calcnode_t	*prev = NULL;
 
-	eqpt->volumes = new_llval();
-	eqpt->phs = new_llval();
-	volume = eqpt->volumes;
-	ph = eqpt->phs;
+	eqpt->start = calcnode_new();
+	csor = eqpt->start;
 	while (getline(&line, &n, fd) != -1) {
-		delim_i = find_delim_i(line, DATA_SEP);
-		get_llvalstr(volume, line);
-		prev = volume;
-		volume = volume->n;
-		volume = new_llval();
-		prev->n = volume;
-		get_llvalstr(ph, &line[delim_i + 1]);
-		prev = ph;
-		ph = ph->n;
-		ph = new_llval();
-		prev->n = ph;
+		set_calcnodestimater(csor, line);
+		prev = csor;
+		csor = csor->n;
+		csor = calcnode_new();
+		prev->n = csor;
 	}
 	free(line);
 	prev = NULL;
-	ph = NULL;
-	volume = NULL;
+	csor = NULL;
 }

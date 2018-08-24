@@ -9,45 +9,45 @@
 #include "types.h"
 #include "titration.h"
 
-void	llval_init(llval_t *llval)
+void	calcnode_init(calcnode_t *calcnode)
 {
-	llval->value = 0.0;
-	llval->n = NULL;
+	calcnode->vol = 0.0;
+	calcnode->ph = 0.0;
+	calcnode->n = NULL;
 }
 
-llval_t	*new_llval(void)
+calcnode_t	*calcnode_new(void)
 {
-	llval_t	*new = malloc(sizeof(llval_t));
+	calcnode_t	*new = malloc(sizeof(calcnode_t));
 	
 	if (!new) {
 		return (NULL);
 	}
-	llval_init(new);
+	calcnode_init(new);
 	return (new);
 }
 
-void	delete_llist(llval_t *start)
+void	calclist_delete(calcnode_t *start)
 {
-	llval_t	*cs = start;
-	llval_t	*prev = NULL;
+	calcnode_t	*cs = start;
+	calcnode_t	*prev = NULL;
 
 	while (cs->n != NULL) {
 		prev = cs;
 		cs = cs->n;
-		llval_init(prev);
+		calcnode_init(prev);
 		free(prev);
 	}
 	prev = NULL;
 	cs = NULL;
 }
 
-void	init_eqpt(eqpt_calculator_t *eqpt)
+void	eqpt_init(eqpt_calculator_t *eqpt)
 {
 	int	i = 0;
 
-	eqpt->volumes = NULL;
-	eqpt->phs = NULL;
-	eqpt->est = NULL;
+	eqpt->start = NULL;
+	eqpt->estimate = NULL;
 	while (i < MAX_DERIVATIVE) {
 		eqpt->deriv_head[i] = NULL;
 		i++;
@@ -56,19 +56,22 @@ void	init_eqpt(eqpt_calculator_t *eqpt)
 
 void	eqpt_destroy(eqpt_calculator_t *eqpt)
 {
-	delete_llist(eqpt->deriv_head[0]);
-	delete_llist(eqpt->deriv_head[1]);
-	delete_llist(eqpt->volumes);
-	delete_llist(eqpt->phs);
+	int	i = 0;
+
+	while (i < MAX_DERIVATIVE && (eqpt->deriv_head[i])) {
+		calclist_delete(eqpt->deriv_head[i]);
+		i++;
+	}
+	calclist_delete(eqpt->start);
 }
 
-llval_t	*llval_get_nbh(int n, llval_t *val)
+calcnode_t	*calcnode_get_nbh(int n, calcnode_t *node)
 {
-	llval_t	*cs = val;
+	calcnode_t	*csort = node;
 
 	while (n > 0) {
-		cs = cs->n;
+		csort = csort->n;
 		n--;
 	}
-	return (cs);
+	return (csort);
 }

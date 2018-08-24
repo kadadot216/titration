@@ -8,24 +8,22 @@
 #include "titration.h"
 #include "file.h"
 
-void	print_titr_vals(llval_t *volume, llval_t *ph)
+void	print_titr_vals(calcnode_t *node)
 {
-	llval_t	*phcs = ph;
-	llval_t	*volcs = volume;
+	calcnode_t	*csor = node;
 
-	while (phcs->n != NULL && volcs->n != NULL) {
-		printf("%g%c%g\n", volcs->value, DATA_SEP, phcs->value);
-		volcs = volcs->n;
-		phcs = phcs->n;
+	while (csor->n != NULL && csor->n != NULL) {
+		printf("%g%c%g\n", csor->vol, DATA_SEP, csor->ph);
+		csor = csor->n;
 	}
 }
 
-void	print_llval(llval_t *val)
+void	print_calcnode(calcnode_t *val)
 {
-	llval_t	*cs = val;
+	calcnode_t	*cs = val;
 
 	while (cs->n != NULL) {
-		printf("%g\n", cs->value);
+		printf("%g\n", cs->vol);
 		cs = cs->n;
 	}
 }

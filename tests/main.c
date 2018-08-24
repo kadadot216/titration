@@ -15,7 +15,7 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
 
-	char	*file = "tests/values.csv";
+	char	*file = "tests/values_unordered.csv";
 	FILE	*fd = NULL;
 	bool_t	status = FALSE;
 	eqpt_calculator_t	eqpt;
@@ -24,12 +24,19 @@ int	main(int ac, char **av)
 	if (status == FALSE) {
 		return (84);
 	}
+	eqpt_init(&eqpt);
 	fd_parse(&eqpt, fd);
 	fclose(fd);
-	eqpt_get_derivatives(&eqpt);
-	eqpt_print_derivative(&eqpt);
-	eqpt_print_derivative_2(&eqpt);
-	eqpt_get_est(&eqpt);
-	eqpt_destroy(&eqpt);
+	print_titr_vals(eqpt.start);
+	eqpt_sort_volumes(&eqpt);
+	//eqpt_get_derivatives(&eqpt);
+	printf("\n\nAfter:\n");
+	print_titr_vals(eqpt.start);
+	//eqpt_print_derivative(&eqpt);
+	//eqpt_print_estpt(&eqpt);
+	//eqpt_print_derivative_2(&eqpt);
+	//eqpt_print_estimate(2, eqpt.estimate);
+	//eqpt_print_estpt(&eqpt);
+	//eqpt_destroy(&eqpt);
 	return (0);
 }

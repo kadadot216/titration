@@ -63,7 +63,7 @@ Test(string_print_csv_filename, t2, .init=redirect_all_std)
 	}
 }
 
-Test(print_titration_llist, test1, .init=redirect_all_std)
+Test(print_titration_calclist, test1, .init=redirect_all_std)
 {
 	char	*buffer = "1;2\n"
 		"2;3\n"
@@ -83,7 +83,7 @@ Test(print_titration_llist, test1, .init=redirect_all_std)
 
 	if (file_open(&fd, "tests/values.csv", "r")) {
 		fd_parse(&eqpt, fd);
-		print_titr_vals(eqpt.volumes, eqpt.phs);
+		print_titr_vals(eqpt.start);
 		fflush(stdout);
 		cr_assert_stdout_eq_str(buffer, "");
 		fclose(fd);

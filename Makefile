@@ -36,6 +36,7 @@ MAIN		=	src/main.c
 SRC		=	src/file.c	\
 			src/calc.c	\
 			src/parsing.c	\
+			src/sort.c	\
 			src/debug.c	\
 			src/print.c	\
 			src/titration.c
@@ -44,11 +45,12 @@ OBJ		=	$(SRC:.c=.o)
 
 #	Tests settings
 TEST_NAME	=	unit_tests
-TEST_SRC	=	tests/redirect.c		\
-			tests/t_read_file.c		\
-			tests/helpers/print_2nd_derivative.c		\
-			tests/t_calc_derivative.c	\
-			tests/t_print_file.c		\
+TEST_SRC	=	tests/redirect.c			\
+			tests/t_read_file.c			\
+			tests/helpers/print_2nd_derivative.c	\
+			tests/t_calc_derivative.c		\
+			tests/t_print_file.c			\
+			tests/t_sort.c				\
 			tests/t_print2_file.c
 
 TEST_FLAGS	=	--coverage -lcriterion

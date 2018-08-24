@@ -10,14 +10,14 @@
 
 Test(string_is_not_csv_filename, test1)
 {
-	char	*fname = "values.txt";
+	char	*fname = "vols.txt";
 	
 	cr_assert_eq(file_has_extension(fname, DATA_EXT), 0);
 }
 
 Test(string_is_not_csv_filename, test2)
 {
-	char	*fname = "values";
+	char	*fname = "vols";
 	
 	cr_assert_eq(file_has_extension(fname, DATA_EXT), 0);
 }

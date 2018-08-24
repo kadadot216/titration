@@ -11,7 +11,7 @@
 #include "titration.h"
 
 double	eqpt_derivative_old(int counter, double *volumes, double *phs);
-double	eqpt_derivative(int n, llval_t *lph, llval_t *lvolume);
-llval_t	*eqpt_calc_derivatives_run(int n, llval_t *llv_a, llval_t *llv_b);
+double	eqpt_derivative(int n, calcnode_t *node);
+calcnode_t	*eqpt_calc_derivatives_run(int n, calcnode_t *node);
 
 #endif /* __CALC_H__ */

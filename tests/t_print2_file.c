@@ -24,8 +24,7 @@ Test(print_derivative, test1, .init=redirect_all_std)
 		"volume: 9 ml -> 0.83\n"
 		"volume: 12 ml -> 0.29\n"
 		"volume: 14 ml -> 0.07\n"
-		"volume: 16 ml -> 0.06\n\n"
-		"Equivalent point at 8 ml\n\n\n";
+		"volume: 16 ml -> 0.06\n\n";
 
 	if (file_open(&fd, "tests/values.csv", "r")) {
 		fd_parse(&eqpt, fd);
