@@ -38,15 +38,16 @@ static int	fd_valid_line(char *const line)
 {
 	uint_t	i = 0;
 
-	if (line == NULL || line[0] == '\0') {
-		return (0);
-	}
 	while (line[i] != '\0' && line[i] != '\n') {
 		if (!((line[i] >= '0' && line[i] <= '9') ||
 		line[i] == DATA_SEP || line[i] == '.')) {
 			return (0);
 		}
 		i++;
+	}
+	if (line == NULL || line[0] == '\0' ||
+	line[0] == '\n' ||line[0] == DATA_SEP || line[i-1] == DATA_SEP) {
+		return (0);
 	}
 	return (1);
 }

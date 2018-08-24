@@ -30,7 +30,7 @@ void	eqpt_print_estimate(int n, calcnode_t *estimate)
 			step = step_compute(csor, next_stop);
 			n--;
 		}
-		if (eq_pt == 0.0 && estimate->ph - VOL_STEP < 0.0)
+		if (eq_pt == 0.0 && (estimate->ph + step) < 0.0)
 			eq_pt = csor->vol;
 		printf("volume: %g ml -> %.2f\n", csor->vol, csor->ph);
 		csor->ph += step;
