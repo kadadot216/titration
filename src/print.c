@@ -7,9 +7,11 @@
 
 #include "titration.h"
 
-double	step_compute(calcnode_t *node, calcnode_t *next)
+int	exit_print_help(char **av, int status)
 {
-	return ((next->ph - node->ph) / ((next->vol - node->vol) * 10));
+	printf("USAGE\n\t\t%s file\n\nDESCRIPTION\n\t\t"
+		"file a csv containing \"vol;ph\" lines\n", av[0]);
+	return (status);
 }
 
 void	eqpt_print_estimate(int n, calcnode_t *estimate)

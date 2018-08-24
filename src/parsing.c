@@ -43,13 +43,13 @@ void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd)
 	calcnode_t	*csor = NULL;
 	calcnode_t	*prev = NULL;
 
-	eqpt->start = calcnode_new();
+	eqpt->start = calcnode_new(eqpt->start);
 	csor = eqpt->start;
 	while (getline(&line, &n, fd) != -1) {
 		set_calcnodestimater(csor, line);
 		prev = csor;
 		csor = csor->n;
-		csor = calcnode_new();
+		csor = calcnode_new(csor);
 		prev->n = csor;
 	}
 	free(line);

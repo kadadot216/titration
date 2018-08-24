@@ -25,7 +25,7 @@ typedef struct	eqpt_calculator_s {
 	calcnode_t	*estimate;
 }	eqpt_calculator_t;
 
-calcnode_t	*calcnode_new(void);
+calcnode_t	*calcnode_new(calcnode_t *new);
 void	fd_parse(eqpt_calculator_t *eqpt, FILE *fd);
 void	print_calcnode(calcnode_t *start);
 void	print_titr_vals(calcnode_t *node);
@@ -39,5 +39,7 @@ void	eqpt_destroy(eqpt_calculator_t *eqpt);
 void	eqpt_print_estimate(int n, calcnode_t *estimate);
 void	eqpt_init(eqpt_calculator_t *eqpt);
 void	eqpt_sort_volumes(eqpt_calculator_t *eqpt);
+int	exit_print_help(char **av, int status);
+double	step_compute(calcnode_t *node, calcnode_t *next);
 
 #endif /* __TITRATION_H__ */

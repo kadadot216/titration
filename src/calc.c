@@ -8,6 +8,11 @@
 #include "titration.h"
 #include <stdio.h>
 
+double	step_compute(calcnode_t *node, calcnode_t *next)
+{
+	return ((next->ph - node->ph) / ((next->vol - node->vol) * 10));
+}
+
 double	eqpt_derivative_old(int counter, double *phs, double *volumes)
 {
 	double	y1 = 0.0;
@@ -42,16 +47,16 @@ calcnode_t	*eqpt_calc_derivatives_run(int n, calcnode_t *start)
 	calcnode_t	*res = NULL;
 	calcnode_t	*res_head = NULL;
 	
-	res = calcnode_new();
-	res_head = res;
 	csor = start;
+	res = calcnode_new(res);
+	res_head = res;
 	while (calcnode_get_nbh(n + 1, csor) != NULL) {
 		res->ph = eqpt_derivative(csor);
 		res->vol = csor->n->vol;
 		prev = res;
 		csor = csor->n;
 		res = res->n;
-		res = calcnode_new();
+		res = calcnode_new(res);
 		prev->n = res;
 	}
 	return (res_head);

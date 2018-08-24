@@ -39,9 +39,11 @@ SRC		=	src/file.c	\
 			src/sort.c	\
 			src/debug.c	\
 			src/print.c	\
-			src/titration.c
+			src/eqpt.c	\
+			src/calcnode.c
 			
 OBJ		=	$(SRC:.c=.o)
+OBJ		+=	$(MAIN:.c=.o)
 
 #	Tests settings
 TEST_NAME	=	unit_tests
@@ -80,8 +82,8 @@ libfclean: libclean
 
 libre: libfclean lib
 
-$(NAME):
-	$(CC) $(CFLAGS) -o $(NAME) $(MAIN) $(SRC) $(LDFLAGS) $(LIBFLAG)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $^ $(LDFLAGS) $(LIBFLAG)
 
 re: fclean all
 
